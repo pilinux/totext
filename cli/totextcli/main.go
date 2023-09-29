@@ -22,6 +22,7 @@ func main() {
 	// Define the subcommands
 	var docCmd = cli.DocCmd(appName)
 	var docxCmd = cli.DocxCmd(appName)
+	var odtCmd = cli.OdtCmd(appName)
 	var pdfCmd = cli.PdfCmd(appName)
 	var versionCmd = totext.Version(appName)
 
@@ -29,6 +30,7 @@ func main() {
 	rootCmd.AddCommand(
 		docCmd,
 		docxCmd,
+		odtCmd,
 		pdfCmd,
 		versionCmd,
 	)
