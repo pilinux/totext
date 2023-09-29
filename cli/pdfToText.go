@@ -13,6 +13,8 @@ import (
 // ConvertPDFToText receives pdf filepath as an argument and writes
 // its text content and metadata into two separate files
 func ConvertPDFToText(filepath string) error {
+	filepath = strings.TrimSpace(filepath)
+
 	// Get file extension from filepath
 	fileExt := totext.GetFileExtension(filepath)
 	if fileExt != totext.PDF {
