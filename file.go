@@ -10,14 +10,15 @@ type FileExtension string
 
 // File types
 const (
-	PDF  FileExtension = "pdf"
-	DOC  FileExtension = "doc"
-	DOCX FileExtension = "docx"
-	ODT  FileExtension = "odt"
-	TXT  FileExtension = "txt"
-	MD   FileExtension = "md"
-	RTF  FileExtension = "rtf"
-	JSON FileExtension = "json"
+	DOC   FileExtension = "doc"
+	DOCX  FileExtension = "docx"
+	JSON  FileExtension = "json"
+	MD    FileExtension = "md"
+	ODT   FileExtension = "odt"
+	PAGES FileExtension = "pages"
+	PDF   FileExtension = "pdf"
+	RTF   FileExtension = "rtf"
+	TXT   FileExtension = "txt"
 )
 
 // GetFileExtension returns the file extension of a file
@@ -28,22 +29,24 @@ func GetFileExtension(filepath string) FileExtension {
 	fileExt = strings.ToLower(fileExt)
 
 	switch fileExt {
-	case string(PDF):
-		return PDF
 	case string(DOC):
 		return DOC
 	case string(DOCX):
 		return DOCX
-	case string(ODT):
-		return ODT
-	case string(TXT):
-		return TXT
-	case string(MD):
-		return MD
-	case string(RTF):
-		return RTF
 	case string(JSON):
 		return JSON
+	case string(MD):
+		return MD
+	case string(ODT):
+		return ODT
+	case string(PAGES):
+		return PAGES
+	case string(PDF):
+		return PDF
+	case string(RTF):
+		return RTF
+	case string(TXT):
+		return TXT
 
 	default:
 		return ""
