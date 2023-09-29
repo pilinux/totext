@@ -19,11 +19,16 @@ func main() {
 		Short: "Extract text from different document types",
 	}
 
+	var docxCmd = cli.DocxCmd(appName)
 	var pdfCmd = cli.PdfCmd(appName)
 	var versionCmd = totext.Version(appName)
 
 	// Add the commands to the root command
-	rootCmd.AddCommand(pdfCmd, versionCmd)
+	rootCmd.AddCommand(
+		docxCmd,
+		pdfCmd,
+		versionCmd,
+	)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
