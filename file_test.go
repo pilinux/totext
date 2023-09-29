@@ -37,6 +37,41 @@ func TestGetFileExtensio(t *testing.T) {
 	}
 }
 
+// TestGetFilename tests GetFilename function
+func TestGetFilename(t *testing.T) {
+	// Test data
+	testData := []struct {
+		filepath string
+		expected string
+	}{
+		{"test.pdf", "test.pdf"},
+		{"/path/to.here/test.pdf", "test.pdf"},
+
+		{"test.doc", "test.doc"},
+		{"/path/to.here/test.pdf.DOC", "test.pdf.doc"},
+
+		{"test.docx", "test.docx"},
+		{"/path/to/test.odt", "test.odt"},
+		{"test.txt", "test.txt"},
+		{"/path/to/test.md", "test.md"},
+		{"test.rtf", "test.rtf"},
+		{"/path/to/test.json", "test.json"},
+
+		{"/path/to/test", "test"},
+	}
+
+	// Iterate over test data
+	for _, data := range testData {
+		// Get filename
+		filename := GetFilename(data.filepath)
+
+		// Compare filename
+		if filename != data.expected {
+			t.Errorf("Expected filename %s, got %s", data.expected, filename)
+		}
+	}
+}
+
 // TestWriteText tests WriteText function
 func TestWriteText(t *testing.T) {
 	// Test data

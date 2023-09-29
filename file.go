@@ -50,6 +50,16 @@ func GetFileExtension(filepath string) FileExtension {
 	}
 }
 
+// GetFilename returns the filename of a file
+func GetFilename(filepath string) string {
+	// Get filename
+	filename := filepath[strings.LastIndex(filepath, "/")+1:]
+	filename = strings.TrimSpace(filename)
+	filename = strings.ToLower(filename)
+
+	return filename
+}
+
 // WriteText writes text content to a file
 func WriteText(filepath string, content string) error {
 	// Create file
