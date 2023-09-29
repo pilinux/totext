@@ -35,6 +35,9 @@ func ConvertFileToText(filepath string) error {
 	case totext.PDF:
 		// Convert PDF to text
 		content, metadata, err = totext.ConvertPDFToText(filepath)
+	case totext.RTF:
+		// Convert rtf to text
+		content, metadata, err = totext.ConvertRTFToText(filepath)
 	default:
 		return fmt.Errorf("file type not supported")
 	}
