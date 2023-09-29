@@ -104,16 +104,18 @@ func IsAbsPath(filepath string) bool {
 
 // SetCwd sets current working directory
 func SetCwd(filepath string) error {
+	filepath = strings.TrimSpace(filepath)
+	filepath = strings.TrimSuffix(
+		filepath,
+		strings.TrimSpace(filepath[strings.LastIndex(filepath, "/")+1:]),
+	)
+
 	if !IsAbsPath(filepath) {
 		currentDir, err := os.Getwd()
 		if err != nil {
 			return err
 		}
 		filepath = currentDir + "/" + filepath
-	}
-
-	if IsAbsPath(filepath) {
-		filepath = strings.TrimSuffix(filepath, GetFilename(filepath))
 	}
 
 	err := os.Chdir(filepath)
