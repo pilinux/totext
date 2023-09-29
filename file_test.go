@@ -138,3 +138,32 @@ func TestDeleteFile(t *testing.T) {
 		}
 	}
 }
+
+// TestIsAbsPath tests IsAbsPath function
+func TestIsAbsPath(t *testing.T) {
+	// Test data
+	testData := []struct {
+		filepath string
+		expected bool
+	}{
+		{"test.txt", false},
+		{"test.md", false},
+		{"test", false},
+		{"to/test.txt", false},
+		{"./path/to/test.txt", false},
+		{"/path/to/test.txt", true},
+		{"/path/to/test.txt", true},
+		{"/path/to/test.md", true},
+	}
+
+	// Iterate over test data
+	for _, data := range testData {
+		// Check if filepath is an absolute path
+		isAbsPath := IsAbsPath(data.filepath)
+
+		// Compare isAbsPath
+		if isAbsPath != data.expected {
+			t.Errorf("Expected isAbsPath %t, got %t for path %s", data.expected, isAbsPath, data.filepath)
+		}
+	}
+}

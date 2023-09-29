@@ -96,3 +96,26 @@ func DeleteFile(filepath string) error {
 	}
 	return nil
 }
+
+// IsAbsPath checks if the filepath is an absolute path
+func IsAbsPath(filepath string) bool {
+	return filepath != "" && filepath[0] == '/'
+}
+
+// SetCwd sets current working directory
+func SetCwd(filepath string) error {
+	if !IsAbsPath(filepath) {
+		currentDir, err := os.Getwd()
+		if err != nil {
+			return err
+		}
+		filepath = currentDir + "/" + filepath
+	}
+
+	if IsAbsPath(filepath) {
+		filepath = strings.TrimSuffix(filepath, GetFilename(filepath))
+	}
+
+	err := os.Chdir(filepath)
+	return err
+}
