@@ -3,7 +3,7 @@ package totext
 import "testing"
 
 // TestGetFileExtension tests GetFileExtension function
-func TestGetFileExtensio(t *testing.T) {
+func TestGetFileExtension(t *testing.T) {
 	// Test data
 	testData := []struct {
 		filepath string
@@ -33,6 +33,41 @@ func TestGetFileExtensio(t *testing.T) {
 		// Compare file extension
 		if fileExt != data.expected {
 			t.Errorf("Expected file extension %s, got %s", data.expected, fileExt)
+		}
+	}
+}
+
+// TestIsMIMETypeMatched tests IsMIMETypeMatched function
+func TestIsMIMETypeMatched(t *testing.T) {
+	// Test data
+	testData := []struct {
+		fileExt  FileExtension
+		mime     MIME
+		expected bool
+	}{
+		{DOC, MimeDOC, true},
+		{DOC, MimeDOCX, false},
+		{DOCX, MimeDOCX, true},
+		{JSON, MimeJSON, true},
+		{MD, MimeMD, true},
+		{ODT, MimeODT, true},
+		{PAGES, MimePAGES, true},
+		{PDF, MimePDF, true},
+		{RTF, MimeRTF, true},
+		{TXT, MimeTXT, true},
+	}
+
+	// Iterate over test data
+	for _, data := range testData {
+		// Check if MIME type is matched
+		isMIMETypeMatched := IsMIMETypeMatched(FileExtension(data.fileExt), data.mime)
+
+		// Compare isMIMETypeMatched
+		if isMIMETypeMatched != data.expected {
+			t.Errorf(
+				"Expected isMIMETypeMatched %t, got %t for file extension %s",
+				data.expected, isMIMETypeMatched, data.fileExt,
+			)
 		}
 	}
 }

@@ -8,6 +8,9 @@ import (
 // FileExtension is the file extension type
 type FileExtension string
 
+// MIME types
+type MIME string
+
 // File types
 const (
 	DOC   FileExtension = "doc"
@@ -19,6 +22,19 @@ const (
 	PDF   FileExtension = "pdf"
 	RTF   FileExtension = "rtf"
 	TXT   FileExtension = "txt"
+)
+
+// MIME types
+const (
+	MimeDOC   MIME = "application/msword"
+	MimeDOCX  MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+	MimeJSON  MIME = "application/json"
+	MimeMD    MIME = "text/markdown"
+	MimeODT   MIME = "application/vnd.oasis.opendocument.text"
+	MimePAGES MIME = "application/vnd.apple.pages"
+	MimePDF   MIME = "application/pdf"
+	MimeRTF   MIME = "application/rtf"
+	MimeTXT   MIME = "text/plain"
 )
 
 // GetFileExtension returns the file extension of a file
@@ -50,6 +66,33 @@ func GetFileExtension(filepath string) FileExtension {
 
 	default:
 		return ""
+	}
+}
+
+// IsMIMETypeMatched compares *multipart.FileHeader MIME type with file extension
+func IsMIMETypeMatched(fileExt FileExtension, mime MIME) bool {
+	switch fileExt {
+	case DOC:
+		return mime == MimeDOC
+	case DOCX:
+		return mime == MimeDOCX
+	case JSON:
+		return mime == MimeJSON
+	case MD:
+		return mime == MimeMD
+	case ODT:
+		return mime == MimeODT
+	case PAGES:
+		return mime == MimePAGES
+	case PDF:
+		return mime == MimePDF
+	case RTF:
+		return mime == MimeRTF
+	case TXT:
+		return mime == MimeTXT
+
+	default:
+		return false
 	}
 }
 
