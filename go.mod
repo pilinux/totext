@@ -5,6 +5,7 @@ go 1.20
 require (
 	code.sajari.com/docconv v1.3.7
 	github.com/PuerkitoBio/goquery v1.5.1
+	github.com/go-rod/rod v0.114.3
 	github.com/spf13/cobra v1.7.0
 	golang.org/x/net v0.7.0
 )
@@ -28,6 +29,11 @@ require (
 	github.com/richardlehane/msoleps v1.0.3 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
+	github.com/ysmood/fetchup v0.2.3 // indirect
+	github.com/ysmood/goob v0.4.0 // indirect
+	github.com/ysmood/got v0.34.1 // indirect
+	github.com/ysmood/gson v0.7.3 // indirect
+	github.com/ysmood/leakless v0.8.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 )

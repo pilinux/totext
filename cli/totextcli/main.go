@@ -27,6 +27,7 @@ func main() {
 	var odtCmd = cli.OdtCmd(appName)
 	var pdfCmd = cli.PdfCmd(appName)
 	var rtfCmd = cli.RtfCmd(appName)
+	var urlCmd = cli.URLCmd(appName)
 	var versionCmd = totext.Version(appName)
 
 	// Add the commands to the root command
@@ -38,6 +39,7 @@ func main() {
 		odtCmd,
 		pdfCmd,
 		rtfCmd,
+		urlCmd,
 		versionCmd,
 	)
 

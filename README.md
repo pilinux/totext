@@ -53,6 +53,20 @@ npm init
 npm install --save-dev --save-exact prettier
 ```
 
+### To fetch remote web page and extract text
+
+When a remote page is requested to be fetched by the application
+for the first time, it will download the latest version of
+[Chromium browser](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html)
+automatically.
+
+`prettier` is required
+
+```bash
+npm init
+npm install --save-dev --save-exact prettier
+```
+
 ## Building command line tool
 
 ```bash
