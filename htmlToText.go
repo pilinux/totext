@@ -15,10 +15,10 @@ import (
 )
 
 // ConvertHTMLToText receives HTML filepath as an argument and returns its text content and metadata
-func ConvertHTMLToText(filepath string) (content string, metadata map[string]string, err error) {
+func ConvertHTMLToText(filepath string, skipPrettifyError bool) (content string, metadata map[string]string, err error) {
 	// Prettify the HTML file
 	err = PrettifyHTML(filepath)
-	if err != nil {
+	if !skipPrettifyError && err != nil {
 		return "", nil, err
 	}
 

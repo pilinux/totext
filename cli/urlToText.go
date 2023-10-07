@@ -12,11 +12,11 @@ import (
 
 // ConvertURLToText receives url as an argument and writes
 // its text content and metadata into two separate files
-func ConvertURLToText(inputURL string) error {
+func ConvertURLToText(inputURL string, skipPrettifyError bool) error {
 	inputURL = strings.TrimSpace(inputURL)
 
 	// Fetch the HTML page and convert to text
-	htmlFilename, content, metadata, err := totext.ConvertURLToText(inputURL)
+	htmlFilename, content, metadata, err := totext.ConvertURLToText(inputURL, skipPrettifyError)
 	if err != nil {
 		return err
 	}
@@ -47,18 +47,35 @@ func URLCmd(appName string) *cobra.Command {
 	var urlCmd = &cobra.Command{
 		Use:   "url",
 		Short: "Fetch HTML page from the URL and write the extracted text to a txt file",
-		Args:  cobra.ExactArgs(1), // full URL
+		Args:  cobra.MinimumNArgs(1), // full URL
 		Run: func(cmd *cobra.Command, args []string) {
+			// Get the value of the skipPrettifyError flag
+			skipPrettifyError, err := cmd.Flags().GetBool("skipPrettifyError")
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+			if skipPrettifyError {
+				fmt.Println("Skipping prettify error")
+			}
+
 			// Convert HTML page from the given URL to text
-			err := ConvertURLToText(args[0])
+			err = ConvertURLToText(args[0], skipPrettifyError)
 			if err != nil {
 				fmt.Println(err)
 				os.Exit(1)
 			}
 		},
 	}
+	// Add the skipPrettifyError flag as an optional argument
+	urlCmd.Flags().BoolP(
+		"skipPrettifyError",
+		"s",
+		false,
+		"skip prettify error",
+	)
 	urlCmd.SetUsageFunc(func(cmd *cobra.Command) error {
-		fmt.Println("Usage:", appName, urlCmd.Use, "[https://example.com/path/to/webpage]")
+		fmt.Println("Usage:", appName, urlCmd.Use, "[https://example.com/path/to/webpage] [--skipPrettifyError or -s]")
 		return nil
 	})
 

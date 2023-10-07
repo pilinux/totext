@@ -31,7 +31,7 @@ func ConvertFileToText(filepath string) error {
 		content, metadata, err = totext.ConvertDocxToText(filepath)
 	case totext.HTML:
 		// Convert HTML to text
-		content, metadata, err = totext.ConvertHTMLToText(filepath)
+		content, metadata, err = totext.ConvertHTMLToText(filepath, false)
 	case totext.ODT:
 		// Convert odt to text
 		content, metadata, err = totext.ConvertOdtToText(filepath)

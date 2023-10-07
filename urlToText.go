@@ -11,7 +11,7 @@ import (
 )
 
 // ConvertURLToText fetches the HTML page at the URL given and returns its text content and metadata
-func ConvertURLToText(inputURL string) (htmlFilename, content string, metadata map[string]string, err error) {
+func ConvertURLToText(inputURL string, skipPrettifyError bool) (htmlFilename, content string, metadata map[string]string, err error) {
 	inputURL = strings.TrimSpace(inputURL)
 
 	// Parse the URL and validate it
@@ -36,7 +36,7 @@ func ConvertURLToText(inputURL string) (htmlFilename, content string, metadata m
 	}
 
 	// Convert the HTML file to text
-	content, metadata, err = ConvertHTMLToText(htmlFilename)
+	content, metadata, err = ConvertHTMLToText(htmlFilename, skipPrettifyError)
 
 	return
 }
