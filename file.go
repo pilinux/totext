@@ -15,6 +15,7 @@ type MIME string
 const (
 	DOC   FileExtension = "doc"
 	DOCX  FileExtension = "docx"
+	HTML  FileExtension = "html"
 	JSON  FileExtension = "json"
 	MD    FileExtension = "md"
 	ODT   FileExtension = "odt"
@@ -28,6 +29,7 @@ const (
 const (
 	MimeDOC   MIME = "application/msword"
 	MimeDOCX  MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+	MimeHTML  MIME = "text/html"
 	MimeJSON  MIME = "application/json"
 	MimeMD    MIME = "text/markdown"
 	MimeODT   MIME = "application/vnd.oasis.opendocument.text"
@@ -49,6 +51,8 @@ func GetFileExtension(filepath string) FileExtension {
 		return DOC
 	case string(DOCX):
 		return DOCX
+	case string(HTML):
+		return HTML
 	case string(JSON):
 		return JSON
 	case string(MD):
@@ -76,6 +80,8 @@ func IsMIMETypeMatched(fileExt FileExtension, mime MIME) bool {
 		return mime == MimeDOC
 	case DOCX:
 		return mime == MimeDOCX
+	case HTML:
+		return mime == MimeHTML
 	case JSON:
 		return mime == MimeJSON
 	case MD:

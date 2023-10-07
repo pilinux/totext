@@ -46,6 +46,13 @@ For MacOs:
 brew install unrtf
 ```
 
+### To convert HTML files, `prettier` is required
+
+```bash
+npm init
+npm install --save-dev --save-exact prettier
+```
+
 ## Building command line tool
 
 ```bash

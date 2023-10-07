@@ -4,12 +4,13 @@ go 1.20
 
 require (
 	code.sajari.com/docconv v1.3.7
+	github.com/PuerkitoBio/goquery v1.5.1
 	github.com/spf13/cobra v1.7.0
+	golang.org/x/net v0.7.0
 )
 
 require (
 	github.com/JalfResi/justext v0.0.0-20170829062021-c0282dea7198 // indirect
-	github.com/PuerkitoBio/goquery v1.5.1 // indirect
 	github.com/advancedlogic/GoOse v0.0.0-20191112112754-e742535969c1 // indirect
 	github.com/andybalholm/cascadia v1.2.0 // indirect
 	github.com/araddon/dateparse v0.0.0-20200409225146-d820a6159ab1 // indirect
@@ -27,7 +28,6 @@ require (
 	github.com/richardlehane/msoleps v1.0.3 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
-	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 )

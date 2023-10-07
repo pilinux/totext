@@ -23,6 +23,7 @@ func main() {
 	var docCmd = cli.DocCmd(appName)
 	var docxCmd = cli.DocxCmd(appName)
 	var fileCmd = cli.FileCmd(appName)
+	var htmlCmd = cli.HTMLCmd(appName)
 	var odtCmd = cli.OdtCmd(appName)
 	var pdfCmd = cli.PdfCmd(appName)
 	var rtfCmd = cli.RtfCmd(appName)
@@ -33,6 +34,7 @@ func main() {
 		docCmd,
 		docxCmd,
 		fileCmd,
+		htmlCmd,
 		odtCmd,
 		pdfCmd,
 		rtfCmd,
