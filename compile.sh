@@ -80,5 +80,10 @@ for target in "${targets[@]}"; do
             -o "build/$dirname-$os-$arch" \
             -v \
             "$d"
+
+        # Rename the output file for Windows
+        if [ "$os" == "windows" ]; then
+            mv "build/$dirname-$os-$arch" "build/$dirname-$os-$arch.exe"
+        fi
     done
 done
