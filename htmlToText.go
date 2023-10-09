@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"runtime"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -157,8 +158,25 @@ func PrettifyHTML(filepath string) (err error) {
 		return fmt.Errorf("file does not exist")
 	}
 
+	var cmd *exec.Cmd
+
+	// run cmd based on OS
+	switch os := runtime.GOOS; os {
+	case "windows":
+		// Command to execute in PowerShell
+		command := "npx prettier --write " + filepath
+
+		// Create a new PowerShell session
+		// and execute the command
+		cmd = exec.Command("powershell.exe", "-Command", command)
+
+	default:
+		// Command to execute in Bash
+		command := "source $HOME/.bashrc && npx prettier --write " + filepath
+		cmd = exec.Command("/bin/bash", "-c", command)
+	}
+
 	// Prettify the HTML file using prettier command
-	cmd := exec.Command("npx", "prettier", "--write", filepath)
 	err = cmd.Run()
 
 	return
