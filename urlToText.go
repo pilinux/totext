@@ -11,7 +11,7 @@ import (
 )
 
 // ConvertURLToText fetches the HTML page at the URL given and returns its text content and metadata
-func ConvertURLToText(inputURL string, skipPrettifyError bool) (htmlFilename, content string, metadata map[string]string, err error) {
+func ConvertURLToText(browser *rod.Browser, inputURL string, skipPrettifyError bool) (htmlFilename, content string, metadata map[string]string, err error) {
 	inputURL = strings.TrimSpace(inputURL)
 
 	// Parse the URL and validate it
@@ -21,7 +21,7 @@ func ConvertURLToText(inputURL string, skipPrettifyError bool) (htmlFilename, co
 	}
 
 	// Capture the HTML page
-	htmlContent, err := CaptureHTML(inputURL)
+	htmlContent, err := CaptureHTML(browser, inputURL)
 	if err != nil {
 		return
 	}
@@ -71,11 +71,7 @@ func ParseURLAndValidate(inputURL string) (*url.URL, error) {
 
 // CaptureHTML fetches the HTML page at the URL given and
 // returns the complete HTML content
-func CaptureHTML(inputURL string) (content string, err error) {
-	// Create a new browser instance
-	browser := rod.New().MustConnect()
-	defer browser.MustClose()
-
+func CaptureHTML(browser *rod.Browser, inputURL string) (content string, err error) {
 	// Create a new page and navigate to the URL
 	page := browser.MustPage(inputURL)
 	defer page.MustClose()

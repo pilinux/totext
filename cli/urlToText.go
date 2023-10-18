@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/go-rod/rod"
 	"github.com/spf13/cobra"
 
 	"github.com/pilinux/totext"
@@ -15,8 +16,12 @@ import (
 func ConvertURLToText(inputURL string, skipPrettifyError bool) error {
 	inputURL = strings.TrimSpace(inputURL)
 
+	// Create a new browser instance
+	browser := rod.New().MustConnect()
+	defer browser.MustClose()
+
 	// Fetch the HTML page and convert to text
-	htmlFilename, content, metadata, err := totext.ConvertURLToText(inputURL, skipPrettifyError)
+	htmlFilename, content, metadata, err := totext.ConvertURLToText(browser, inputURL, skipPrettifyError)
 	if err != nil {
 		return err
 	}
