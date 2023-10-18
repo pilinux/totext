@@ -3,6 +3,7 @@ package totext
 import (
 	"fmt"
 	"net"
+	"net/http"
 	"net/url"
 	"strings"
 	"time"
@@ -48,7 +49,14 @@ func IsHostnameValid(hostname string) bool {
 	return err == nil
 }
 
-// ParseURLAndValidate parses the URL and validates it
+// IsContentTypeHTML checks if the content type is HTML
+func IsContentTypeHTML(contentType string) bool {
+	contentType = strings.ToLower(contentType)
+	return strings.Contains(contentType, "text/html")
+}
+
+// ParseURLAndValidate parses the URL and validates
+// the scheme, hostname and content type
 func ParseURLAndValidate(inputURL string) (*url.URL, error) {
 	// Parse the URL
 	u, err := url.Parse(inputURL)
@@ -64,6 +72,23 @@ func ParseURLAndValidate(inputURL string) (*url.URL, error) {
 	// Check if the URL has a valid hostname
 	if !IsHostnameValid(u.Hostname()) {
 		return nil, fmt.Errorf("invalid hostname")
+	}
+
+	// Create an HTTP client with a timeout of 15 seconds
+	client := &http.Client{
+		Timeout: 15 * time.Second,
+	}
+
+	// Make an HTTP HEAD request to check the content type
+	resp, err := client.Head(inputURL)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	// Check if the content type is HTML
+	if !IsContentTypeHTML(resp.Header.Get("Content-Type")) {
+		return nil, fmt.Errorf("invalid content type")
 	}
 
 	return u, nil
