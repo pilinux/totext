@@ -6,7 +6,7 @@ require (
 	code.sajari.com/docconv v1.3.8
 	github.com/PuerkitoBio/goquery v1.5.1
 	github.com/go-rod/rod v0.114.3
-	github.com/spf13/cobra v1.7.0
+	github.com/spf13/cobra v1.8.0
 	golang.org/x/net v0.17.0
 )
 
