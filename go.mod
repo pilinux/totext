@@ -3,7 +3,7 @@ module github.com/pilinux/totext
 go 1.20
 
 require (
-	code.sajari.com/docconv v1.3.7
+	code.sajari.com/docconv v1.3.8
 	github.com/PuerkitoBio/goquery v1.5.1
 	github.com/go-rod/rod v0.114.3
 	github.com/spf13/cobra v1.7.0
