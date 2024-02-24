@@ -24,5 +24,12 @@ func ConvertDocToText(filepath string) (content string, metadata map[string]stri
 
 	// Convert doc to text
 	content, metadata, err = docconv.ConvertDoc(docFile)
+	if err != nil {
+		return "", nil, err
+	}
+
+	// Filter out non-readable characters
+	content = FilterNonReadableCharacter(content)
+
 	return
 }

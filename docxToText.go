@@ -18,5 +18,12 @@ func ConvertDocxToText(filepath string) (content string, metadata map[string]str
 
 	// Convert docx to text
 	content, metadata, err = docconv.ConvertDocx(docxFile)
+	if err != nil {
+		return "", nil, err
+	}
+
+	// Filter out non-readable characters
+	content = FilterNonReadableCharacter(content)
+
 	return
 }

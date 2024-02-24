@@ -16,5 +16,12 @@ func ConvertPagesToText(filepath string) (content string, metadata map[string]st
 
 	// Convert pages to text
 	content, metadata, err = docconv.ConvertPages(pagesFile)
+	if err != nil {
+		return "", nil, err
+	}
+
+	// Filter out non-readable characters
+	content = FilterNonReadableCharacter(content)
+
 	return
 }

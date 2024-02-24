@@ -23,5 +23,12 @@ func ConvertPDFToText(filepath string) (content string, metadata map[string]stri
 
 	// Convert PDF to text
 	content, metadata, err = docconv.ConvertPDF(pdfFile)
+	if err != nil {
+		return "", nil, err
+	}
+
+	// Filter out non-readable characters
+	content = FilterNonReadableCharacter(content)
+
 	return
 }

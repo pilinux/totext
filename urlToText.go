@@ -38,6 +38,12 @@ func ConvertURLToText(browser *rod.Browser, inputURL string, skipPrettifyError b
 
 	// Convert the HTML file to text
 	content, metadata, err = ConvertHTMLToText(htmlFilename, skipPrettifyError)
+	if err != nil {
+		return "", "", nil, err
+	}
+
+	// Filter out non-readable characters
+	content = FilterNonReadableCharacter(content)
 
 	return
 }

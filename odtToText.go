@@ -17,5 +17,12 @@ func ConvertOdtToText(filepath string) (content string, metadata map[string]stri
 
 	// Convert odt to text
 	content, metadata, err = docconv.ConvertODT(odtFile)
+	if err != nil {
+		return "", nil, err
+	}
+
+	// Filter out non-readable characters
+	content = FilterNonReadableCharacter(content)
+
 	return
 }

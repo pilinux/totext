@@ -23,5 +23,12 @@ func ConvertRTFToText(filepath string) (content string, metadata map[string]stri
 
 	// Convert rtf to text
 	content, metadata, err = docconv.ConvertRTF(rtfFile)
+	if err != nil {
+		return "", nil, err
+	}
+
+	// Filter out non-readable characters
+	content = FilterNonReadableCharacter(content)
+
 	return
 }
