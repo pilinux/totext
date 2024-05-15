@@ -3,8 +3,8 @@ code.sajari.com/docconv v1.3.8/go.mod h1:q2Wj80d67JJ4VVZCNv3fTht0fJ6eMFajQBsa+G1
 github.com/JalfResi/justext v0.0.0-20170829062021-c0282dea7198 h1:8P+AjBhGByCuCX2zTkAf6UY+dj0JczX+t6cSdCSyvfw=
 github.com/JalfResi/justext v0.0.0-20170829062021-c0282dea7198/go.mod h1:0SURuH1rsE8aVWvutuMZghRNrNrYEUzibzJfhEYR8L0=
 github.com/PuerkitoBio/goquery v1.4.1/go.mod h1:T9ezsOHcCrDCgA8aF1Cqr3sSYbO/xgdy8/R/XiIMAhA=
-github.com/PuerkitoBio/goquery v1.9.1 h1:mTL6XjbJTZdpfL+Gwl5U2h1l9yEkJjhmlTeV9VPW7UI=
-github.com/PuerkitoBio/goquery v1.9.1/go.mod h1:cW1n6TmIMDoORQU5IU/P1T3tGFunOeXEpGP2WHRwkbY=
+github.com/PuerkitoBio/goquery v1.9.2 h1:4/wZksC3KgkQw7SQgkKotmKljk0M6V8TUvA8Wb4yPeE=
+github.com/PuerkitoBio/goquery v1.9.2/go.mod h1:GHPCaP0ODyyxqcNoFGYlAprUFH81NuRPd0GX3Zu2Mvk=
 github.com/advancedlogic/GoOse v0.0.0-20191112112754-e742535969c1 h1:d0Ct1dZwgwMO0Llf81Eu+Lyj6kwqXdqHP/WsSkEria0=
 github.com/advancedlogic/GoOse v0.0.0-20191112112754-e742535969c1/go.mod h1:f3HCSN1fBWjcpGtXyM119MJgeQl838v6so/PQOqvE1w=
 github.com/andybalholm/cascadia v1.0.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
