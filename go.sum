@@ -23,8 +23,8 @@ github.com/gigawattio/window v0.0.0-20180317192513-0f5467e35573/go.mod h1:eBvb3i
 github.com/go-resty/resty/v2 v2.0.0/go.mod h1:dZGr0i9PLlaaTD4H/hoZIDjQ+r6xq8mgbRzHZf7f2J8=
 github.com/go-resty/resty/v2 v2.3.0 h1:JOOeAvjSlapTT92p8xiS19Zxev1neGikoHsXJeOq8So=
 github.com/go-resty/resty/v2 v2.3.0/go.mod h1:UpN9CgLZNsv4e9XG50UU8xdI0F43UQ4HmxLBDwaroHU=
-github.com/go-rod/rod v0.115.0 h1:xL+4BOr4sEGVphDPqpkSYWHwDOVmoCbZUmVZhEEUK+4=
-github.com/go-rod/rod v0.115.0/go.mod h1:aiedSEFg5DwG/fnNbUOTPMTTWX3MRj6vIs/a684Mthw=
+github.com/go-rod/rod v0.116.0 h1:ypRryjTys3EnqHskJ/TdgodFMvXV0EHvmy4bSkKZgHM=
+github.com/go-rod/rod v0.116.0/go.mod h1:aiedSEFg5DwG/fnNbUOTPMTTWX3MRj6vIs/a684Mthw=
 github.com/google/go-cmp v0.5.7 h1:81/ik6ipDQS2aGcBfIN5dHDB36BwrStyeAQquSYCV4o=
 github.com/google/go-cmp v0.5.7/go.mod h1:n+brtR0CgQNWTVd5ZUFpTBC8YFBDLK/h/bpaJ8/DtOE=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
