@@ -1,10 +1,10 @@
 module github.com/pilinux/totext
 
-go 1.21
+go 1.23
 
 require (
 	code.sajari.com/docconv v1.3.8
-	github.com/PuerkitoBio/goquery v1.9.2
+	github.com/PuerkitoBio/goquery v1.10.0
 	github.com/go-rod/rod v0.116.2
 	github.com/spf13/cobra v1.8.1
 	golang.org/x/net v0.31.0
