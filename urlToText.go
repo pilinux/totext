@@ -22,7 +22,7 @@ func ConvertURLToText(browser *rod.Browser, inputURL string, skipPrettifyError b
 	}
 
 	// Capture the HTML page
-	htmlContent, err := CaptureHTML(browser, inputURL)
+	htmlContent, err := CaptureHTML(browser, inputURL, 0)
 	if err != nil {
 		return
 	}
@@ -102,7 +102,7 @@ func ParseURLAndValidate(inputURL string) (*url.URL, error) {
 
 // CaptureHTML fetches the HTML page at the URL given and
 // returns the complete HTML content
-func CaptureHTML(browser *rod.Browser, inputURL string) (content string, err error) {
+func CaptureHTML(browser *rod.Browser, inputURL string, delayInSec int) (content string, err error) {
 	// Create a new page and navigate to the URL
 	page := browser.MustPage(inputURL)
 	defer page.MustClose()
@@ -115,6 +115,9 @@ func CaptureHTML(browser *rod.Browser, inputURL string) (content string, err err
 
 	// Wait until the page is idle
 	wait()
+
+	// Add an additional delay in seconds which may be required for some web pages
+	time.Sleep(time.Duration(delayInSec) * time.Second)
 
 	// Get the HTML content
 	content, err = page.HTML()
