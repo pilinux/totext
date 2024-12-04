@@ -12,7 +12,9 @@ import (
 )
 
 // ConvertURLToText fetches the HTML page at the URL given and returns its text content and metadata
-func ConvertURLToText(browser *rod.Browser, inputURL string, skipPrettifyError bool) (htmlFilename, content string, metadata map[string]string, err error) {
+//
+// delayInSec: an additional delay in seconds which may be required for some web pages to load properly
+func ConvertURLToText(browser *rod.Browser, inputURL string, skipPrettifyError bool, delayInSec int) (htmlFilename, content string, metadata map[string]string, err error) {
 	inputURL = strings.TrimSpace(inputURL)
 
 	// Parse the URL and validate it
@@ -22,7 +24,7 @@ func ConvertURLToText(browser *rod.Browser, inputURL string, skipPrettifyError b
 	}
 
 	// Capture the HTML page
-	htmlContent, err := CaptureHTML(browser, inputURL, 0)
+	htmlContent, err := CaptureHTML(browser, inputURL, delayInSec)
 	if err != nil {
 		return
 	}
@@ -91,6 +93,10 @@ func ParseURLAndValidate(inputURL string) (*url.URL, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+
+	if resp.StatusCode >= 400 {
+		return nil, fmt.Errorf("HTTP status code: %d", resp.StatusCode)
+	}
 
 	// Check if the content type is HTML
 	if !IsContentTypeHTML(resp.Header.Get("Content-Type")) {

@@ -13,7 +13,7 @@ import (
 
 // ConvertURLToText receives url as an argument and writes
 // its text content and metadata into two separate files
-func ConvertURLToText(inputURL string, skipPrettifyError bool) error {
+func ConvertURLToText(inputURL string, skipPrettifyError bool, delayInSec int) error {
 	inputURL = strings.TrimSpace(inputURL)
 
 	// Create a new browser instance
@@ -21,7 +21,7 @@ func ConvertURLToText(inputURL string, skipPrettifyError bool) error {
 	defer browser.MustClose()
 
 	// Fetch the HTML page and convert to text
-	htmlFilename, content, metadata, err := totext.ConvertURLToText(browser, inputURL, skipPrettifyError)
+	htmlFilename, content, metadata, err := totext.ConvertURLToText(browser, inputURL, skipPrettifyError, delayInSec)
 	if err != nil {
 		return err
 	}
@@ -64,8 +64,15 @@ func URLCmd(appName string) *cobra.Command {
 				fmt.Println("Skipping prettify error")
 			}
 
+			// Get the value of the delayInSec flag
+			delayInSec, err := cmd.Flags().GetInt("delayInSec")
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
 			// Convert HTML page from the given URL to text
-			err = ConvertURLToText(args[0], skipPrettifyError)
+			err = ConvertURLToText(args[0], skipPrettifyError, delayInSec)
 			if err != nil {
 				fmt.Println(err)
 				os.Exit(1)
@@ -79,8 +86,15 @@ func URLCmd(appName string) *cobra.Command {
 		false,
 		"skip prettify error",
 	)
+	// Add the delayInSec flag as an optional argument
+	urlCmd.Flags().IntP(
+		"delayInSec",
+		"d",
+		0,
+		"additional delay in seconds for the web page to load",
+	)
 	urlCmd.SetUsageFunc(func(cmd *cobra.Command) error {
-		fmt.Println("Usage:", appName, urlCmd.Use, "[https://example.com/path/to/webpage] [--skipPrettifyError or -s]")
+		fmt.Println("Usage:", appName, urlCmd.Use, "['https://example.com/path/to/webpage'] [--skipPrettifyError or -s] [--delayInSec=<seconds> or -d <seconds>]")
 		return nil
 	})
 
