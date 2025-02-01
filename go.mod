@@ -7,7 +7,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.10.0
 	github.com/go-rod/rod v0.116.2
 	github.com/spf13/cobra v1.8.1
-	golang.org/x/net v0.33.0
+	golang.org/x/net v0.34.0
 )
 
 require (
