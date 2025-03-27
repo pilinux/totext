@@ -113,13 +113,17 @@ func GetFilename(filepath string) string {
 }
 
 // WriteText writes text content to a file
-func WriteText(filepath string, content string) error {
+func WriteText(filepath string, content string) (err error) {
 	// Create file
 	f, err := os.Create(filepath)
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer func() {
+		if e := f.Close(); e != nil && err == nil {
+			err = e
+		}
+	}()
 
 	// Write content to the file
 	_, err = f.WriteString(content)

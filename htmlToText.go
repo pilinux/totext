@@ -28,7 +28,11 @@ func ConvertHTMLToText(filepath string, skipPrettifyError bool) (content string,
 	if err != nil {
 		return "", nil, err
 	}
-	defer htmlFile.Close()
+	defer func() {
+		if e := htmlFile.Close(); e != nil && err == nil {
+			err = e
+		}
+	}()
 
 	// Copy the HTML content into a buffer
 	var htmlBuffer bytes.Buffer

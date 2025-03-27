@@ -13,7 +13,9 @@ func ConvertOdtToText(filepath string) (content string, metadata map[string]stri
 	if err != nil {
 		return "", nil, err
 	}
-	defer odtFile.Close()
+	defer func() {
+		_ = odtFile.Close()
+	}()
 
 	// Convert odt to text
 	content, metadata, err = docconv.ConvertODT(odtFile)

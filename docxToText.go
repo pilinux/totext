@@ -14,7 +14,9 @@ func ConvertDocxToText(filepath string) (content string, metadata map[string]str
 	if err != nil {
 		return "", nil, err
 	}
-	defer docxFile.Close()
+	defer func() {
+		_ = docxFile.Close()
+	}()
 
 	// Convert docx to text
 	content, metadata, err = docconv.ConvertDocx(docxFile)

@@ -65,9 +65,9 @@ func IsContentTypeHTML(contentType string) bool {
 
 // ParseURLAndValidate parses the URL and validates
 // the scheme, hostname and content type
-func ParseURLAndValidate(inputURL string) (*url.URL, error) {
+func ParseURLAndValidate(inputURL string) (u *url.URL, err error) {
 	// Parse the URL
-	u, err := url.Parse(inputURL)
+	u, err = url.Parse(inputURL)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +92,11 @@ func ParseURLAndValidate(inputURL string) (*url.URL, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		if e := resp.Body.Close(); e != nil && err == nil {
+			err = e
+		}
+	}()
 
 	if resp.StatusCode >= 400 {
 		return nil, fmt.Errorf("HTTP status code: %d", resp.StatusCode)
@@ -111,7 +115,11 @@ func ParseURLAndValidate(inputURL string) (*url.URL, error) {
 func CaptureHTML(browser *rod.Browser, inputURL string, delayInSec int) (content string, err error) {
 	// Create a new page and navigate to the URL
 	page := browser.MustPage(inputURL)
-	defer page.MustClose()
+	defer func() {
+		if e := page.Close(); e != nil && err == nil {
+			err = e
+		}
+	}()
 
 	// Set a timeout of 30 seconds and wait for the page to load
 	page.Timeout(30 * time.Second).MustWaitLoad()

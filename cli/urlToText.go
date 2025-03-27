@@ -13,12 +13,16 @@ import (
 
 // ConvertURLToText receives url as an argument and writes
 // its text content and metadata into two separate files
-func ConvertURLToText(inputURL string, skipPrettifyError bool, delayInSec int) error {
+func ConvertURLToText(inputURL string, skipPrettifyError bool, delayInSec int) (err error) {
 	inputURL = strings.TrimSpace(inputURL)
 
 	// Create a new browser instance
 	browser := rod.New().MustConnect()
-	defer browser.MustClose()
+	defer func() {
+		if e := browser.Close(); e != nil && err == nil {
+			err = e
+		}
+	}()
 
 	// Fetch the HTML page and convert to text
 	htmlFilename, content, metadata, err := totext.ConvertURLToText(browser, inputURL, skipPrettifyError, delayInSec)

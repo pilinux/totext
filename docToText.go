@@ -20,7 +20,9 @@ func ConvertDocToText(filepath string) (content string, metadata map[string]stri
 	if err != nil {
 		return "", nil, err
 	}
-	defer docFile.Close()
+	defer func() {
+		_ = docFile.Close()
+	}()
 
 	// Convert doc to text
 	content, metadata, err = docconv.ConvertDoc(docFile)

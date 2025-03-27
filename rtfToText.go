@@ -19,7 +19,9 @@ func ConvertRTFToText(filepath string) (content string, metadata map[string]stri
 	if err != nil {
 		return "", nil, err
 	}
-	defer rtfFile.Close()
+	defer func() {
+		_ = rtfFile.Close()
+	}()
 
 	// Convert rtf to text
 	content, metadata, err = docconv.ConvertRTF(rtfFile)

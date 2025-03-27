@@ -19,7 +19,9 @@ func ConvertPDFToText(filepath string) (content string, metadata map[string]stri
 	if err != nil {
 		return "", nil, err
 	}
-	defer pdfFile.Close()
+	defer func() {
+		_ = pdfFile.Close()
+	}()
 
 	// Convert PDF to text
 	content, metadata, err = docconv.ConvertPDF(pdfFile)
