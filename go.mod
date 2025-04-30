@@ -4,7 +4,7 @@ go 1.23.0
 
 require (
 	code.sajari.com/docconv v1.3.8
-	github.com/PuerkitoBio/goquery v1.10.2
+	github.com/PuerkitoBio/goquery v1.10.3
 	github.com/go-rod/rod v0.116.2
 	github.com/spf13/cobra v1.9.1
 	golang.org/x/net v0.39.0
