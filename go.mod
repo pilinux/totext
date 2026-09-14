@@ -1,13 +1,13 @@
 module github.com/pilinux/totext
 
-go 1.25.0
+go 1.26.0
 
 require (
 	code.sajari.com/docconv v1.3.8
 	github.com/PuerkitoBio/goquery v1.12.0
 	github.com/go-rod/rod v0.116.2
 	github.com/spf13/cobra v1.10.2
-	golang.org/x/net v0.58.0
+	golang.org/x/net v0.59.0
 )
 
 require (
@@ -34,6 +34,6 @@ require (
 	github.com/ysmood/got v0.40.0 // indirect
 	github.com/ysmood/gson v0.7.3 // indirect
 	github.com/ysmood/leakless v0.9.0 // indirect
-	golang.org/x/text v0.41.0 // indirect
+	golang.org/x/text v0.42.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 )
